@@ -37,15 +37,15 @@ Add the plugin to your studio project's `opencode.json`:
 {
   "$schema": "https://opencode.ai/config.json",
   "plugin": [
-    "github:aykutkarakurtt/game-designer-plugin"
+    "github:aykutkarakurtt/game-thinking-plugin"
   ]
 }
 ```
 
 ### Option B: Clone & Run Directly
 ```bash
-git clone https://github.com/aykutkarakurtt/game-designer-plugin.git
-cd game-designer-plugin
+git clone https://github.com/aykutkarakurtt/game-thinking-plugin.git
+cd game-thinking-plugin
 opencode
 ```
 
@@ -75,7 +75,7 @@ Run `/analyze` (or `/analyze <sub-genre/mechanic>`) in OpenCode to trigger the t
 ## 🗂 Repository Structure
 
 ```text
-game-designer-plugin/
+game-thinking-plugin/
 ├── .opencode/
 │   ├── agents/
 │   │   └── game-designer.md      # Primary Thinking Lead agent definition
