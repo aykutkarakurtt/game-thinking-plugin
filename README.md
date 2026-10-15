@@ -1,4 +1,4 @@
-# 🎯 `opencode-game-designer` — Autonomous Game Design, Market & Thinking Lead Plugin
+# 🎯 `game-thinking-plugin` — Autonomous Game Design, Market & Thinking Lead Plugin
 
 > **OpenCode Studio Plugin for 2D Hyper-Casual & Hybrid-Casual Games**  
 > **Role:** Strategic Game Thinking, Interactive Brainstorming, Keep/Kill Validation, Market & Competitor Deconstruction, 2D MDA/Juice Choreography, and Mathematical Balance (`game_balance.json`).
@@ -7,7 +7,7 @@
 
 ## 🧭 Studio Role & Strict Boundaries
 
-In a modular AI Game Studio pipeline, **`opencode-game-designer`** acts as the **Pre-Production Thinking & Mathematical Balance Brain**:
+In a modular AI Game Studio pipeline, **`game-thinking-plugin`** acts as the **Pre-Production Thinking & Mathematical Balance Brain**:
 
 * ❌ **NO Production Code:** Never writes C#, GDScript, shaders, or engine scripts.
 * ❌ **NO Visual Assets:** Never generates sprites, textures, or UI art.

@@ -1,5 +1,5 @@
 /**
- * opencode-game-designer — OpenCode Plugin
+ * game-thinking-plugin — OpenCode Plugin
  *
  * Automatically registers:
  * 1. Primary Agent: `game-designer` (from .opencode/agents/game-designer.md)
