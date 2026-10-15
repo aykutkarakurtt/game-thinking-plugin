@@ -1,0 +1,17 @@
+{
+  "name": "opencode-game-designer",
+  "version": "1.0.0",
+  "description": "Autonomous Game Design, Market & Thinking Lead Plugin for 2D Hyper-Casual Games",
+  "type": "module",
+  "main": ".opencode/plugins/game-designer.js",
+  "files": [
+    ".opencode/plugins",
+    ".opencode/agents",
+    ".opencode/commands",
+    "AGENTS.md",
+    "opencode.json"
+  ],
+  "keywords": ["opencode-plugin", "game-designer", "hyper-casual", "game-thinking"],
+  "author": "Aykut Karakurt",
+  "license": "MIT"
+}
