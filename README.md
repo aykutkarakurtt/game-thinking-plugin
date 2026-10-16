@@ -109,31 +109,3 @@ pip install -r requirements.txt
 python3 validate_balance.py
 ```
 
----
-
-## 📄 Output Artifact Schema (`game_balance.json`)
-
-When `/analyze` completes Stage 2, it generates a standalone `game_balance.json` file for downstream studio agents (GDD / Developer):
-
-```json
-{
-  "meta": {
-    "oyun_adi": "Ricochet Pulse: Neon Shatter",
-    "tur": "2D Hiper-Gündelik / Kinetik Sapan, Çarpan Kapıları ve Zincirleme Sekme Yıkımı"
-  },
-  "player_sling_and_pulse_mechanics": { "...": "Input & core verb parameters" },
-  "physics_and_collision_tuning": { "...": "Fixed timestep, CCD, restitution, gates" },
-  "difficulty_progression_curves": {
-    "formulas": {
-      "block_hp_formula": "BlockHP(lvl) = floor(12 * pow(lvl, 1.32) + 8 * lvl)"
-    }
-  },
-  "juice_and_game_feel_matrix": {
-    "screen_shake_trauma": { "model": "Shake = Trauma^2", "trauma_decay_per_sec": 1.65 },
-    "hit_stop_freeze_frames": { "...": "Multi-tier real-time freeze durations (ms)" },
-    "squash_and_stretch": { "...": "EaseOutBack scale vectors" },
-    "audio_design_and_mixing": { "...": "Bus hierarchy, sidechain ducking (dB), pitch Hz" }
-  },
-  "scoring_and_combo_economy": { "...": "Combo windows & multipliers" }
-}
-```
