@@ -69,6 +69,28 @@ class CpiHookSummary(BaseModel):
     hook_2_to_3_sec: str = Field(..., min_length=5, description="2-3s satisfying ASMR payoff / chain reaction")
 
 
+class CompetitorBenchmark(BaseModel):
+    """Deconstruction of a market leader (Find stage): psychological driver, churn friction, and market gap."""
+
+    model_config = ConfigDict(extra="allow")
+
+    competitor_name: str = Field(..., min_length=2, description="Benchmark competitor game title")
+    psychological_driver: str = Field(..., min_length=5, description="Core psychological & mechanical compulsion")
+    churn_friction_point: str = Field(..., min_length=5, description="Where and why players churn in this competitor")
+    exploited_market_gap: str = Field(..., min_length=5, description="How our concept solves this friction point")
+
+
+class KeepKillVerdict(BaseModel):
+    """Devil's Advocate Keep/Kill evaluation (Think stage) for the locked concept."""
+
+    model_config = ConfigDict(extra="allow")
+
+    verdict: str = Field(default="KEEP", pattern=r"^(KEEP|KILL|REFACTOR)$", description="Keep / Kill / Refactor decision")
+    winning_reason: str = Field(..., min_length=5, description="Why the chosen concept survives the Keep/Kill filter")
+    killed_alternatives_reason: str = Field(..., min_length=5, description="Why rejected brainstorm alternatives were killed")
+    primary_churn_risk_mitigation: str = Field(..., min_length=5, description="How the #1 churn risk is mathematically mitigated")
+
+
 class MdaSummary(BaseModel):
     """Structured 2D MDA handoff summary for downstream GDD stage."""
 
@@ -272,6 +294,15 @@ class GameBalanceConfig(BaseModel):
     cpi_hook_summary: Optional[CpiHookSummary] = Field(
         default=None,
         description="Structured 3-second visual CPI hook handoff for GDD stage",
+    )
+    competitor_benchmarks: Optional[List[CompetitorBenchmark]] = Field(
+        default=None,
+        min_length=2,
+        description="2-3 deconstructed competitor benchmarks (Find stage)",
+    )
+    keep_kill_verdict: Optional[KeepKillVerdict] = Field(
+        default=None,
+        description="Devil's Advocate Keep/Kill evaluation summary (Think stage)",
     )
     mda_summary: Optional[MdaSummary] = Field(
         default=None,

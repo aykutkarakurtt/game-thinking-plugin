@@ -32,6 +32,44 @@
       "title": "AudioDesignAndMixingConfig",
       "type": "object"
     },
+    "CompetitorBenchmark": {
+      "additionalProperties": true,
+      "description": "Deconstruction of a market leader (Find stage): psychological driver, churn friction, and market gap.",
+      "properties": {
+        "competitor_name": {
+          "description": "Benchmark competitor game title",
+          "minLength": 2,
+          "title": "Competitor Name",
+          "type": "string"
+        },
+        "psychological_driver": {
+          "description": "Core psychological & mechanical compulsion",
+          "minLength": 5,
+          "title": "Psychological Driver",
+          "type": "string"
+        },
+        "churn_friction_point": {
+          "description": "Where and why players churn in this competitor",
+          "minLength": 5,
+          "title": "Churn Friction Point",
+          "type": "string"
+        },
+        "exploited_market_gap": {
+          "description": "How our concept solves this friction point",
+          "minLength": 5,
+          "title": "Exploited Market Gap",
+          "type": "string"
+        }
+      },
+      "required": [
+        "competitor_name",
+        "psychological_driver",
+        "churn_friction_point",
+        "exploited_market_gap"
+      ],
+      "title": "CompetitorBenchmark",
+      "type": "object"
+    },
     "CpiHookSummary": {
       "additionalProperties": true,
       "description": "Structured 3-Second Visual CPI Hook handoff for downstream GDD & Creative stages.",
@@ -167,6 +205,44 @@
         "audio_design_and_mixing"
       ],
       "title": "JuiceAndGameFeelMatrix",
+      "type": "object"
+    },
+    "KeepKillVerdict": {
+      "additionalProperties": true,
+      "description": "Devil's Advocate Keep/Kill evaluation (Think stage) for the locked concept.",
+      "properties": {
+        "verdict": {
+          "default": "KEEP",
+          "description": "Keep / Kill / Refactor decision",
+          "pattern": "^(KEEP|KILL|REFACTOR)$",
+          "title": "Verdict",
+          "type": "string"
+        },
+        "winning_reason": {
+          "description": "Why the chosen concept survives the Keep/Kill filter",
+          "minLength": 5,
+          "title": "Winning Reason",
+          "type": "string"
+        },
+        "killed_alternatives_reason": {
+          "description": "Why rejected brainstorm alternatives were killed",
+          "minLength": 5,
+          "title": "Killed Alternatives Reason",
+          "type": "string"
+        },
+        "primary_churn_risk_mitigation": {
+          "description": "How the #1 churn risk is mathematically mitigated",
+          "minLength": 5,
+          "title": "Primary Churn Risk Mitigation",
+          "type": "string"
+        }
+      },
+      "required": [
+        "winning_reason",
+        "killed_alternatives_reason",
+        "primary_churn_risk_mitigation"
+      ],
+      "title": "KeepKillVerdict",
       "type": "object"
     },
     "LevelMilestone": {
@@ -557,6 +633,35 @@
       ],
       "default": null,
       "description": "Structured 3-second visual CPI hook handoff for GDD stage"
+    },
+    "competitor_benchmarks": {
+      "anyOf": [
+        {
+          "items": {
+            "$ref": "#/$defs/CompetitorBenchmark"
+          },
+          "minItems": 2,
+          "type": "array"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "description": "2-3 deconstructed competitor benchmarks (Find stage)",
+      "title": "Competitor Benchmarks"
+    },
+    "keep_kill_verdict": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/KeepKillVerdict"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "description": "Devil's Advocate Keep/Kill evaluation summary (Think stage)"
     },
     "mda_summary": {
       "anyOf": [

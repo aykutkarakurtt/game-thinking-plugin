@@ -138,7 +138,7 @@ The plugin packages **9 specialized Game Thinking skills** directly inside `skil
 
 To ensure a 100% type-safe handoff from the **Thinking Stage** to downstream **GDD** and **Engine/Developer** agents, all generated `game_balance.json` files are validated against a strict **Pydantic v2 (`BaseModel`)** schema in `schemas/game_balance_schema.py`:
 
-* **Validated Models:** `GameBalanceConfig`, `MetaConfig`, `PhysicsSimulationConfig`, `DifficultyProgressionCurves`, `ScreenShakeTraumaConfig`, `HitStopTierConfig`, `AudioDesignAndMixingConfig`, `ScoringAndComboEconomy`.
+* **Validated Models:** `GameBalanceConfig`, `MetaConfig`, `CpiHookSummary`, `CompetitorBenchmark`, `KeepKillVerdict`, `MdaSummary`, `PhysicsSimulationConfig`, `DifficultyProgressionCurves`, `ScreenShakeTraumaConfig`, `HitStopTierConfig`, `AudioDesignAndMixingConfig`, `ScoringAndComboEconomy`.
 * **Mathematical Guardrails:** Enforces physics tick bounds (`30–240 Hz`), normalized trauma increments (`0.0–1.0`), ascending level milestones, negative sidechain ducking gain (`dB`), and real-time hit-stop limits (`0–500 ms`).
 
 ### Run Validation & Export JSON Schema
