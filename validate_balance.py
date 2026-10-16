@@ -16,7 +16,9 @@ from schemas.game_balance_schema import GameBalanceConfig
 
 def main() -> int:
     root_dir = Path(__file__).resolve().parent
-    target_path = Path(sys.argv[1]) if len(sys.argv) > 1 and not sys.argv[1].startswith("--") else root_dir / "game_balance.json"
+    cwd_balance = Path.cwd() / "game_balance.json"
+    default_balance = cwd_balance if cwd_balance.exists() else root_dir / "game_balance.json"
+    target_path = Path(sys.argv[1]) if len(sys.argv) > 1 and not sys.argv[1].startswith("--") else default_balance
     export_schema_path = root_dir / "schemas" / "game_balance.schema.json"
 
     # Always keep the exported JSON Schema up to date for downstream GDD / Studio agents
