@@ -78,15 +78,35 @@ Run `/analyze` (or `/analyze <sub-genre/mechanic>`) in OpenCode to trigger the t
 game-thinking-plugin/
 ├── .opencode/
 │   ├── agents/
-│   │   └── game-designer.md      # Primary Thinking Lead agent definition
+│   │   └── game-designer.md          # Primary Thinking Lead agent definition
 │   ├── commands/
-│   │   └── analyze.md            # /analyze Brainstorm-First custom command
+│   │   └── analyze.md                # /analyze Brainstorm-First custom command
 │   └── plugins/
-│       └── game-designer.js      # OpenCode plugin entry point (auto-registers agent, command & rules)
-├── AGENTS.md                     # Core methodological rules & anti-repetition constraints
-├── opencode.json                 # Local OpenCode configuration
-├── package.json                  # Plugin package manifest
-└── README.md                     # Plugin documentation
+│       └── game-designer.js          # OpenCode plugin entry point (auto-registers agent, command & rules)
+├── schemas/
+│   ├── game_balance_schema.py        # Pydantic v2 BaseModel data contract for game_balance.json
+│   └── game_balance.schema.json      # Auto-exported JSON Schema for downstream GDD / Engine agents
+├── validate_balance.py               # CLI validator verifying game_balance.json via Pydantic v2
+├── requirements.txt                  # Python dependency (pydantic>=2.0.0)
+├── AGENTS.md                         # Core methodological rules & anti-repetition constraints
+├── opencode.json                     # Local OpenCode configuration
+├── package.json                      # Plugin package manifest
+└── README.md                         # Plugin documentation
+```
+
+---
+
+## 🛡 Pydantic v2 Schema Validation (Studio Pipeline Data Contract)
+
+To ensure a 100% type-safe handoff from the **Thinking Stage** to downstream **GDD** and **Engine/Developer** agents, all generated `game_balance.json` files are validated against a strict **Pydantic v2 (`BaseModel`)** schema in `schemas/game_balance_schema.py`:
+
+* **Validated Models:** `GameBalanceConfig`, `MetaConfig`, `PhysicsSimulationConfig`, `DifficultyProgressionCurves`, `ScreenShakeTraumaConfig`, `HitStopTierConfig`, `AudioDesignAndMixingConfig`, `ScoringAndComboEconomy`.
+* **Mathematical Guardrails:** Enforces physics tick bounds (`30–240 Hz`), normalized trauma increments (`0.0–1.0`), ascending level milestones, negative sidechain ducking gain (`dB`), and real-time hit-stop limits (`0–500 ms`).
+
+### Run Validation & Export JSON Schema
+```bash
+pip install -r requirements.txt
+python3 validate_balance.py
 ```
 
 ---

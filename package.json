@@ -8,6 +8,9 @@
     ".opencode/plugins",
     ".opencode/agents",
     ".opencode/commands",
+    "schemas",
+    "validate_balance.py",
+    "requirements.txt",
     "AGENTS.md",
     "opencode.json"
   ],
