@@ -83,15 +83,25 @@ game-thinking-plugin/
 │   │   └── analyze.md                        # /analyze Brainstorm-First custom command
 │   └── plugins/
 │       └── game-designer.js                  # OpenCode plugin entry point (registers agent, command, skills & rules)
-├── skills/                                   # Modular Domain Skills (SKILL.md)
+├── skills/                                   # 9 Modular Domain Skills (SKILL.md)
+│   ├── brainstorming/
+│   │   └── SKILL.md                          # Interactive Questioning, Trade-Offs & Approval Gate (HARD-GATE)
+│   ├── prototype-fast/
+│   │   └── SKILL.md                          # Rapid MVP Scoping & Observable Keep/Kill Criteria
 │   ├── keep-kill-ideation/
 │   │   └── SKILL.md                          # Stage 1 Ideation, Trade-Offs & Devil's Advocate Keep/Kill Gate
 │   ├── market-cpi-deconstruction/
 │   │   └── SKILL.md                          # 3-Second CPI Hook Choreography & Competitor Deconstruction
 │   ├── mda-juice-choreography/
-│   │   └── SKILL.md                          # 2D MDA, Quadratic Trauma Shake, Hit-Stop & ASMR Audio Matrix
+│   │   └── SKILL.md                          # 2D MDA Deconstruction & Micro-Interaction Choreography
+│   ├── game-feel/
+│   │   └── SKILL.md                          # Quadratic Trauma Shake, Hit-Stop Tiers & Squash/Stretch
+│   ├── audio-design/
+│   │   └── SKILL.md                          # Bus Hierarchy, -14 LUFS, Sidechain Ducking & ASMR Pitch Hz
+│   ├── physics-tuning/
+│   │   └── SKILL.md                          # 60Hz Fixed Timestep, CCD, Speed Caps & Bounce Deflection
 │   └── mathematical-game-balance/
-│       └── SKILL.md                          # Progression Curves, 60Hz Physics & Pydantic Balance Modeling
+│       └── SKILL.md                          # Progression Curves, Scoring Economy & Pydantic Balance Modeling
 ├── schemas/
 │   ├── game_balance_schema.py                # Pydantic v2 BaseModel data contract for game_balance.json
 │   └── game_balance.schema.json              # Auto-exported JSON Schema for downstream GDD / Engine agents
@@ -107,14 +117,19 @@ game-thinking-plugin/
 
 ## 🧠 Bundled Domain Skills (`skills/`)
 
-The plugin packages four specialized Game Thinking skills that `game-designer` loads on demand during `/analyze`:
+The plugin packages **9 specialized Game Thinking skills** directly inside `skills/` that `game-designer` loads on demand during `/analyze`:
 
 | Skill Name | Purpose & Trigger |
 |---|---|
+| **`brainstorming`** | Interactive one-at-a-time questioning, trade-off framing, and explicit approval gate (`HARD-GATE`). |
+| **`prototype-fast`** | Core verb isolation, MVP scope discipline, and observable Keep / Kill / Refactor signals. |
 | **`keep-kill-ideation`** | One-finger 2D concept ideation, CPI vs. retention trade-off matrix, and Devil's Advocate (`Keep / Kill`) validation gate. |
 | **`market-cpi-deconstruction`** | 3-second TikTok/Meta CPI hook choreography (`0-1s`, `1-2s`, `2-3s`) and 2–3 competitor churn/gap deconstruction. |
-| **`mda-juice-choreography`** | 2D MDA breakdown, quadratic trauma screen shake ($\text{Shake} = \text{Trauma}^2$), multi-tier hit-stop (`ms`), squash & stretch, and ASMR audio (`Hz` / `LUFS`). |
-| **`mathematical-game-balance`** | Polynomial/logarithmic progression formulas, 60Hz 2D physics constants, and Pydantic v2 `game_balance.json` generation. |
+| **`mda-juice-choreography`** | 2D MDA (Mechanics, Dynamics, Aesthetics) deconstruction and micro-interaction juice matrix. |
+| **`game-feel`** | Quadratic trauma screen shake ($\text{Shake} = \text{Trauma}^2$), multi-tier hit-stop (`ms`), squash & stretch, and input forgiveness. |
+| **`audio-design`** | Audio mixer bus hierarchy, `-14 LUFS` loudness target, sidechain ducking (`dB`), and harmonic ASMR pitch escalation (`Hz`). |
+| **`physics-tuning`** | 60Hz fixed timestep, continuous collision detection (CCD), velocity caps, and anti-sticking bounce deflection. |
+| **`mathematical-game-balance`** | Polynomial/logarithmic progression formulas, scoring economy, and Pydantic v2 `game_balance.json` generation. |
 
 ---
 
