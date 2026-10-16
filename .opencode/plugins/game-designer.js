@@ -4,7 +4,8 @@
  * Automatically registers:
  * 1. Primary Agent: `game-designer` (from .opencode/agents/game-designer.md)
  * 2. Slash Command: `/analyze` (from .opencode/commands/analyze.md)
- * 3. Instructions: `AGENTS.md`
+ * 3. Bundled Skills: `skills/<skill-name>/SKILL.md`
+ * 4. Instructions: `AGENTS.md`
  */
 
 import path from 'path';
@@ -15,6 +16,7 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const pluginRootDir = path.resolve(__dirname, '../..');
 const agentsDir = path.resolve(__dirname, '../agents');
 const commandsDir = path.resolve(__dirname, '../commands');
+const skillsDir = path.resolve(pluginRootDir, 'skills');
 const instructionsPath = path.resolve(pluginRootDir, 'AGENTS.md');
 
 const parseMarkdownWithFrontmatter = (rawContent) => {
@@ -74,6 +76,15 @@ export const GameDesignerPlugin = async () => {
           template: body,
           ...(config.command['analyze'] || {}),
         };
+      }
+
+      // 4. Register bundled `skills` directory
+      if (fs.existsSync(skillsDir)) {
+        config.skills = config.skills || {};
+        config.skills.paths = Array.isArray(config.skills.paths) ? config.skills.paths : [];
+        if (!config.skills.paths.includes(skillsDir) && !config.skills.paths.includes('skills')) {
+          config.skills.paths.push(skillsDir);
+        }
       }
     },
   };

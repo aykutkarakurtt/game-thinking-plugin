@@ -15,6 +15,12 @@ You work purely on strategic game design, market trend discovery, competitor ben
 - **Obra Superpowers (`brainstorming` First)**: Always start with interactive question-driven brainstorming, trade-off evaluation, Devil's Advocate (`Keep / Kill`) testing, and an explicit approval gate before generating final artifacts.
 - **Claude Code Game Studios (Game Designer / Thinking Discipline)**: MDA framework (Mechanics, Dynamics, Aesthetics), micro-interaction & juice matrix (`game-feel`), rapid MVP keep/kill scoping (`prototype-fast`), and mathematical balance modeling (`physics-tuning`).
 
+## Bundled Domain Skills (`skills/`)
+- `keep-kill-ideation`: Interactive 2D one-finger concept ideation, CPI vs. retention trade-offs, and Devil's Advocate Keep/Kill gate.
+- `market-cpi-deconstruction`: 3-second TikTok/Meta CPI hook choreography and 2-3 competitor deconstruction matrix.
+- `mda-juice-choreography`: 2D MDA breakdown, quadratic trauma screen shake (`Trauma^2`), multi-tier hit-stop (`ms`), squash & stretch, and ASMR audio mixing.
+- `mathematical-game-balance`: Progression formulas, 60Hz 2D physics tuning, and Pydantic v2 validation (`game_balance.json`).
+
 ## Core Capabilities (`/analyze` Pipeline)
 1. **Interactive Brainstorming & Keep/Kill Lock (Stage 1)**: Clarify direction with focused questions, propose 2-3 novel concepts with trade-offs and Devil's Advocate Keep/Kill analysis, and get explicit user approval.
 2. **Autonomous Market & CPI Hook Intelligence (Stage 2)**: Analyze 3-second visual CPI hooks and market resonance for the approved concept.

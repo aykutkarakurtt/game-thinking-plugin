@@ -15,7 +15,7 @@ Strictly follow this two-stage **Thinking Lead** methodology (NO GDD bloat, NO p
 Before generating full analysis documents or touching `README.md` / `game_balance.json`, you MUST first run an interactive brainstorming session with the user:
 
 ### Step 1.1: Invoke Brainstorming & Clarifying Questions
-- Invoke the `brainstorming` skill (and `prototype-fast` when evaluating keep/kill scope).
+- Invoke the `brainstorming` and `keep-kill-ideation` skills (plus `prototype-fast` when evaluating keep/kill scope).
 - Inspect existing `README.md` and `game_balance.json` to ensure you NEVER repeat previously generated sub-genres or mechanics.
 - Ask **one focused question at a time** (prefer multiple-choice options A/B/C/D plus an autonomous option) to clarify:
   1. Target 2D hyper-casual / hybrid-casual sub-genre or core mechanic direction (incorporating `$ARGUMENTS` if provided).
@@ -34,24 +34,24 @@ Before generating full analysis documents or touching `README.md` / `game_balanc
 ## STAGE 2: Deep Thinking, Deconstruction & Mathematical Balance (Post-Approval)
 Once the user explicitly approves the chosen concept in Stage 1, execute all phases below tailored 100% to the approved concept:
 
-### Phase 1: Autonomous Market & CPI Hook Intelligence
+### Phase 1: Autonomous Market & CPI Hook Intelligence (`market-cpi-deconstruction`)
 - Analyze why the chosen mechanic resonates in current mobile charts and viral social channels (TikTok / Meta).
 - Break down the exact **3-Second Visual Hook** choreography (0-1s tension, 1-2s input/twist, 2-3s satisfying payoff).
 
-### Phase 2: Competitor Deconstruction (`Deconstruct`)
+### Phase 2: Competitor Deconstruction (`market-cpi-deconstruction`)
 - Benchmark **2-3 top market leaders** in the chosen sub-genre.
 - Deconstruct:
   1. **Core Psychological & Mechanical Driver**: Why did their primary loop click?
   2. **Friction Points & Churn Risks**: Where does player satisfaction drop?
   3. **Untapped Market Gap**: How our brainstormed concept exploits this gap.
 
-### Phase 3: 2D MDA & Juice Matrix Choreography (`game-feel` & `audio-design`)
+### Phase 3: 2D MDA & Juice Matrix Choreography (`mda-juice-choreography`, `game-feel` & `audio-design`)
 - **Mechanics**: Input schema, physics rules, fail/win states.
 - **Dynamics**: Tension-release pacing, risk/reward loops, clutch recovery moments.
 - **Aesthetics**: Tactile ASMR satisfaction and visual clarity.
 - **Juice Blueprint**: Quantified micro-interactions — quadratic trauma screen shake, multi-tier hit-stop (ms), squash & stretch easing curves, particle burst emission counts, and audio frequency layering (`Hz`).
 
-### Phase 4: Mathematical Game Balance (`game_balance.json`)
+### Phase 4: Mathematical Game Balance (`mathematical-game-balance`, `physics-tuning` & `procedural-gen`)
 - Engineer a complete, production-ready mathematical parameter set in `game_balance.json` tailored to the approved concept (`physics-tuning` & `procedural-gen`):
   - Core mechanic & player interaction metrics
   - Physics / hazard / spawn parameters

@@ -3,5 +3,10 @@
   "default_agent": "game-designer",
   "instructions": [
     "AGENTS.md"
-  ]
+  ],
+  "skills": {
+    "paths": [
+      "skills"
+    ]
+  }
 }
