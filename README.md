@@ -63,11 +63,11 @@ Run `/analyze` (or `/analyze <sub-genre/mechanic>`) in OpenCode to trigger the t
      │      ├─ Step 1.2: 2-3 Novel 2D Concepts + Trade-Offs + Devil's Advocate (Keep/Kill)
      │      └─ Step 1.3: Wait for explicit user approval before generating files
      │
-     └──► STAGE 2: Deep Thinking, Deconstruction & Mathematical Balance
-            ├─ Phase 1: 3-Second Visual CPI Hook & Market Resonance
-            ├─ Phase 2: Competitor Deconstruction (2-3 leaders, churn risks, market gap)
-            ├─ Phase 3: 2D MDA & Quantified Juice Matrix (Trauma, Hit-Stop, Audio Hz)
-            └─ Phase 4: Output Generation (`game_balance.json` + Strategic Report)
+      └──► STAGE 2: Deep Thinking, Deconstruction & Mathematical Balance
+             ├─ Phase 1: 3-Second Visual CPI Hook & Market Resonance
+             ├─ Phase 2: Competitor Deconstruction (2-3 leaders, churn risks, market gap)
+             ├─ Phase 3: 2D MDA & Quantified Juice Matrix (Trauma, Hit-Stop, Audio Hz)
+             └─ Phase 4: Output Generation (`outputs/game_balance.json` + `outputs/game_thinking_report.md`)
 ```
 
 ---
@@ -103,9 +103,10 @@ game-thinking-plugin/
 │   └── mathematical-game-balance/
 │       └── SKILL.md                          # Progression Curves, Scoring Economy & Pydantic Balance Modeling
 ├── schemas/
-│   ├── game_balance_schema.py                # Pydantic v2 BaseModel data contract for game_balance.json
+│   ├── game_balance_schema.py                # Pydantic v2 BaseModel data contract for outputs/game_balance.json
 │   └── game_balance.schema.json              # Auto-exported JSON Schema for downstream GDD / Engine agents
-├── validate_balance.py                       # CLI validator verifying game_balance.json via Pydantic v2
+├── outputs/                                  # Generated artifacts when /analyze runs (game_thinking_report.md & game_balance.json)
+├── validate_balance.py                       # CLI validator verifying outputs/game_balance.json via Pydantic v2
 ├── requirements.txt                          # Python dependency (pydantic>=2.0.0)
 ├── AGENTS.md                                 # Core methodological rules & anti-repetition constraints
 ├── opencode.json                             # Local OpenCode configuration

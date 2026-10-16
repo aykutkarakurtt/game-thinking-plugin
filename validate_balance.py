@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-CLI Validator & JSON Schema Exporter for `game_balance.json` using Pydantic v2.
+CLI Validator & JSON Schema Exporter for `outputs/game_balance.json` using Pydantic v2.
 
 Usage:
     python3 validate_balance.py [path_to_game_balance.json] [--export-schema]
@@ -14,11 +14,26 @@ from pydantic import ValidationError
 from schemas.game_balance_schema import GameBalanceConfig
 
 
+def resolve_default_balance_path(root_dir: Path) -> Path:
+    candidates = [
+        Path.cwd() / "outputs" / "game_balance.json",
+        Path.cwd() / "game_balance.json",
+        root_dir / "outputs" / "game_balance.json",
+        root_dir / "game_balance.json",
+    ]
+    for candidate in candidates:
+        if candidate.exists():
+            return candidate
+    return Path.cwd() / "outputs" / "game_balance.json"
+
+
 def main() -> int:
     root_dir = Path(__file__).resolve().parent
-    cwd_balance = Path.cwd() / "game_balance.json"
-    default_balance = cwd_balance if cwd_balance.exists() else root_dir / "game_balance.json"
-    target_path = Path(sys.argv[1]) if len(sys.argv) > 1 and not sys.argv[1].startswith("--") else default_balance
+    target_path = (
+        Path(sys.argv[1])
+        if len(sys.argv) > 1 and not sys.argv[1].startswith("--")
+        else resolve_default_balance_path(root_dir)
+    )
     export_schema_path = root_dir / "schemas" / "game_balance.schema.json"
 
     # Always keep the exported JSON Schema up to date for downstream GDD / Studio agents
@@ -31,7 +46,8 @@ def main() -> int:
     if not target_path.exists():
         print("✅ Pydantic v2 Schema Contract Ready (`GameBalanceConfig`)!")
         print(f"   • JSON Schema     : Exported to {export_schema_path.relative_to(root_dir)}")
-        print(f"   • Status          : No `{target_path.name}` generated yet. Run `/analyze` to generate and validate a balance file.")
+        print("   • Target Output   : outputs/game_balance.json (+ outputs/game_thinking_report.md)")
+        print("   • Status          : No balance file generated yet. Run `/analyze` to generate and validate outputs.")
         return 0
 
     try:
@@ -43,12 +59,13 @@ def main() -> int:
     try:
         validated = GameBalanceConfig.model_validate(raw_data)
     except ValidationError as exc:
-        print(f"[FAILED] Pydantic validation failed for {target_path.name}:\n", file=sys.stderr)
+        print(f"[FAILED] Pydantic validation failed for {target_path}:\n", file=sys.stderr)
         print(exc, file=sys.stderr)
         return 1
 
     extra_sections = list(validated.__pydantic_extra__.keys()) if validated.__pydantic_extra__ else []
     print("✅ Pydantic v2 Validation PASSED!")
+    print(f"   • File Validated  : {target_path}")
     print(f"   • Game Title      : {validated.meta.oyun_adi} (v{validated.meta.surum})")
     print(f"   • Sub-Genre       : {validated.meta.tur}")
     print(f"   • Mechanic Blocks : {', '.join(extra_sections)}")

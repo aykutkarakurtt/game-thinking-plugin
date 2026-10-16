@@ -1,5 +1,5 @@
 """
-Pydantic v2 Data Contract & Validation Schema for `game_balance.json`.
+Pydantic v2 Data Contract & Validation Schema for `outputs/game_balance.json`.
 
 Used in the Unico AI Game Studio pipeline to guarantee that the output of the
 Thinking & Balance stage (`game-thinking-plugin`) is strictly typed,
@@ -9,25 +9,75 @@ Engine/Developer agents.
 
 from __future__ import annotations
 
-from typing import Any, Dict, List, Optional, Union
-from pydantic import BaseModel, ConfigDict, Field, field_validator, model_validator
+from typing import Any, Dict, List, Optional
+from pydantic import AliasChoices, BaseModel, ConfigDict, Field, field_validator, model_validator
 
 
 class MetaConfig(BaseModel):
     """Metadata identifying the analyzed 2D game concept and balance model."""
 
-    model_config = ConfigDict(extra="allow")
+    model_config = ConfigDict(extra="allow", populate_by_name=True)
 
-    oyun_adi: str = Field(..., min_length=2, description="Analyzed game concept title")
-    surum: str = Field(default="1.0.0", description="Semantic version of the balance config")
-    tur: str = Field(..., min_length=5, description="2D Hyper-Casual / Hybrid-Casual sub-genre description")
+    oyun_adi: str = Field(
+        ...,
+        min_length=2,
+        validation_alias=AliasChoices("oyun_adi", "game_title", "title"),
+        description="Analyzed game concept title",
+    )
+    surum: str = Field(
+        default="1.0.0",
+        validation_alias=AliasChoices("surum", "version"),
+        description="Semantic version of the balance config",
+    )
+    tur: str = Field(
+        ...,
+        min_length=5,
+        validation_alias=AliasChoices("tur", "sub_genre", "genre"),
+        description="2D Hyper-Casual / Hybrid-Casual sub-genre description",
+    )
     tasarim_lideri: str = Field(
         default="Autonomous Game Design, Market & Thinking Lead",
+        validation_alias=AliasChoices("tasarim_lideri", "design_lead", "author"),
         description="Authoring agent role",
     )
-    denge_modeli: str = Field(..., min_length=5, description="Primary mathematical balance model summary")
-    tarih: str = Field(..., pattern=r"^\d{4}-\d{2}-\d{2}$", description="ISO date (YYYY-MM-DD)")
-    aciklama: Optional[str] = Field(default=None, description="Context description of the balance configuration")
+    denge_modeli: str = Field(
+        ...,
+        min_length=5,
+        validation_alias=AliasChoices("denge_modeli", "balance_model"),
+        description="Primary mathematical balance model summary",
+    )
+    tarih: str = Field(
+        ...,
+        pattern=r"^\d{4}-\d{2}-\d{2}$",
+        validation_alias=AliasChoices("tarih", "date"),
+        description="ISO date (YYYY-MM-DD)",
+    )
+    aciklama: Optional[str] = Field(
+        default=None,
+        validation_alias=AliasChoices("aciklama", "description"),
+        description="Context description of the balance configuration",
+    )
+
+
+class CpiHookSummary(BaseModel):
+    """Structured 3-Second Visual CPI Hook handoff for downstream GDD & Creative stages."""
+
+    model_config = ConfigDict(extra="allow")
+
+    hook_0_to_1_sec: str = Field(..., min_length=5, description="0-1s visual tension / pattern interrupt")
+    hook_1_to_2_sec: str = Field(..., min_length=5, description="1-2s one-finger input gesture & twist")
+    hook_2_to_3_sec: str = Field(..., min_length=5, description="2-3s satisfying ASMR payoff / chain reaction")
+
+
+class MdaSummary(BaseModel):
+    """Structured 2D MDA handoff summary for downstream GDD stage."""
+
+    model_config = ConfigDict(extra="allow")
+
+    one_finger_input_schema: str = Field(..., min_length=3, description="Primary single-finger input gesture (Tap, Drag, Hold & Release, Swipe)")
+    core_mechanics: str = Field(..., min_length=5, description="Core mechanical rule and win/fail condition")
+    core_dynamics: str = Field(..., min_length=5, description="Tension-release pacing and risk/reward dynamics")
+    core_aesthetics: str = Field(..., min_length=5, description="Primary player sensation and ASMR aesthetic payoff")
 
 
 class PhysicsSimulationConfig(BaseModel):
@@ -56,10 +106,15 @@ class PhysicsAndCollisionTuning(BaseModel):
 class LevelMilestone(BaseModel):
     """Quantified level milestone snapshot along the difficulty progression curve."""
 
-    model_config = ConfigDict(extra="allow")
+    model_config = ConfigDict(extra="allow", populate_by_name=True)
 
     level: int = Field(..., ge=1, description="Milestone level number (>= 1)")
-    tanim_tr: str = Field(..., min_length=5, description="Design description of the level milestone")
+    tanim_tr: str = Field(
+        ...,
+        min_length=5,
+        validation_alias=AliasChoices("tanim_tr", "description", "summary"),
+        description="Design description of the level milestone",
+    )
 
 
 class DifficultyProgressionCurves(BaseModel):
@@ -120,7 +175,7 @@ class ScreenShakeTraumaConfig(BaseModel):
 class HitStopTierConfig(BaseModel):
     """Single hit-stop / freeze-frame tier specification."""
 
-    model_config = ConfigDict(extra="allow")
+    model_config = ConfigDict(extra="allow", populate_by_name=True)
 
     duration_realtime_sec: float = Field(
         ...,
@@ -134,7 +189,12 @@ class HitStopTierConfig(BaseModel):
         le=1.0,
         description="Engine time scale during hit-stop (0.0 = full freeze, 1.0 = normal speed)",
     )
-    tanim_tr: str = Field(..., min_length=3, description="Explanation of when this hit-stop tier triggers")
+    tanim_tr: str = Field(
+        ...,
+        min_length=3,
+        validation_alias=AliasChoices("tanim_tr", "description", "trigger"),
+        description="Explanation of when this hit-stop tier triggers",
+    )
 
 
 class SquashAndStretchConfig(BaseModel):
@@ -199,7 +259,7 @@ class ScoringAndComboEconomy(BaseModel):
 
 class GameBalanceConfig(BaseModel):
     """
-    Root Pydantic Data Contract for `game_balance.json`.
+    Root Pydantic Data Contract for `outputs/game_balance.json`.
 
     Validates all mandatory studio pipeline sections while allowing concept-specific
     mechanic blocks (e.g., `player_sling_and_pulse_mechanics`, `slicing_mechanics`,
@@ -209,6 +269,14 @@ class GameBalanceConfig(BaseModel):
     model_config = ConfigDict(extra="allow")
 
     meta: MetaConfig
+    cpi_hook_summary: Optional[CpiHookSummary] = Field(
+        default=None,
+        description="Structured 3-second visual CPI hook handoff for GDD stage",
+    )
+    mda_summary: Optional[MdaSummary] = Field(
+        default=None,
+        description="Structured 2D MDA handoff summary for GDD stage",
+    )
     physics_and_collision_tuning: PhysicsAndCollisionTuning
     difficulty_progression_curves: DifficultyProgressionCurves
     juice_and_game_feel_matrix: JuiceAndGameFeelMatrix

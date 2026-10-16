@@ -31,5 +31,5 @@ You work purely on strategic game design, market trend discovery, competitor ben
 2. **Autonomous Market & CPI Hook Intelligence (Stage 2)**: Analyze 3-second visual CPI hooks and market resonance for the approved concept.
 3. **Competitor Deconstruction**: Deconstruct 2-3 market leaders, analyzing psychological drivers, churn friction points, and market gaps.
 4. **2D MDA & Juice Matrix**: Detail core loops, single-action tactile satisfaction, quadratic trauma screen shake, hit-stop, squash & stretch, and ASMR audio choreography.
-5. **Mathematical Balancing**: Output production-ready, mathematically sound balance configurations into `game_balance.json`.
-6. **Deliverables**: Write the strategic Thinking & Deconstruction report to `README.md` and parameters to `game_balance.json`, accompanied by an executive CLI summary.
+5. **Mathematical Balancing**: Output production-ready, mathematically sound balance configurations into `outputs/game_balance.json`.
+6. **Deliverables**: Write the strategic Thinking & Deconstruction report to `outputs/game_thinking_report.md` and parameters to `outputs/game_balance.json`, accompanied by an executive CLI summary.

@@ -32,6 +32,37 @@
       "title": "AudioDesignAndMixingConfig",
       "type": "object"
     },
+    "CpiHookSummary": {
+      "additionalProperties": true,
+      "description": "Structured 3-Second Visual CPI Hook handoff for downstream GDD & Creative stages.",
+      "properties": {
+        "hook_0_to_1_sec": {
+          "description": "0-1s visual tension / pattern interrupt",
+          "minLength": 5,
+          "title": "Hook 0 To 1 Sec",
+          "type": "string"
+        },
+        "hook_1_to_2_sec": {
+          "description": "1-2s one-finger input gesture & twist",
+          "minLength": 5,
+          "title": "Hook 1 To 2 Sec",
+          "type": "string"
+        },
+        "hook_2_to_3_sec": {
+          "description": "2-3s satisfying ASMR payoff / chain reaction",
+          "minLength": 5,
+          "title": "Hook 2 To 3 Sec",
+          "type": "string"
+        }
+      },
+      "required": [
+        "hook_0_to_1_sec",
+        "hook_1_to_2_sec",
+        "hook_2_to_3_sec"
+      ],
+      "title": "CpiHookSummary",
+      "type": "object"
+    },
     "DifficultyProgressionCurves": {
       "additionalProperties": true,
       "description": "Mathematical progression formulas and concrete level milestones.",
@@ -160,6 +191,44 @@
         "tanim_tr"
       ],
       "title": "LevelMilestone",
+      "type": "object"
+    },
+    "MdaSummary": {
+      "additionalProperties": true,
+      "description": "Structured 2D MDA handoff summary for downstream GDD stage.",
+      "properties": {
+        "one_finger_input_schema": {
+          "description": "Primary single-finger input gesture (Tap, Drag, Hold & Release, Swipe)",
+          "minLength": 3,
+          "title": "One Finger Input Schema",
+          "type": "string"
+        },
+        "core_mechanics": {
+          "description": "Core mechanical rule and win/fail condition",
+          "minLength": 5,
+          "title": "Core Mechanics",
+          "type": "string"
+        },
+        "core_dynamics": {
+          "description": "Tension-release pacing and risk/reward dynamics",
+          "minLength": 5,
+          "title": "Core Dynamics",
+          "type": "string"
+        },
+        "core_aesthetics": {
+          "description": "Primary player sensation and ASMR aesthetic payoff",
+          "minLength": 5,
+          "title": "Core Aesthetics",
+          "type": "string"
+        }
+      },
+      "required": [
+        "one_finger_input_schema",
+        "core_mechanics",
+        "core_dynamics",
+        "core_aesthetics"
+      ],
+      "title": "MdaSummary",
       "type": "object"
     },
     "MetaConfig": {
@@ -472,10 +541,34 @@
     }
   },
   "additionalProperties": true,
-  "description": "Root Pydantic Data Contract for `game_balance.json`.\n\nValidates all mandatory studio pipeline sections while allowing concept-specific\nmechanic blocks (e.g., `player_sling_and_pulse_mechanics`, `slicing_mechanics`,\n`sorting_grid_mechanics`) via structured dictionary validation.",
+  "description": "Root Pydantic Data Contract for `outputs/game_balance.json`.\n\nValidates all mandatory studio pipeline sections while allowing concept-specific\nmechanic blocks (e.g., `player_sling_and_pulse_mechanics`, `slicing_mechanics`,\n`sorting_grid_mechanics`) via structured dictionary validation.",
   "properties": {
     "meta": {
       "$ref": "#/$defs/MetaConfig"
+    },
+    "cpi_hook_summary": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/CpiHookSummary"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "description": "Structured 3-second visual CPI hook handoff for GDD stage"
+    },
+    "mda_summary": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/MdaSummary"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "description": "Structured 2D MDA handoff summary for GDD stage"
     },
     "physics_and_collision_tuning": {
       "$ref": "#/$defs/PhysicsAndCollisionTuning"
