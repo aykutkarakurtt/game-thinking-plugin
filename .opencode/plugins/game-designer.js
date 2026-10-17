@@ -19,7 +19,6 @@ const commandsDir = path.resolve(__dirname, '../commands');
 const skillsDir = path.resolve(pluginRootDir, 'skills');
 const instructionsPath = path.resolve(pluginRootDir, 'AGENTS.md');
 const validatorScriptPath = path.resolve(pluginRootDir, 'validate_balance.py');
-const schemaFilePath = path.resolve(pluginRootDir, 'schemas/game_balance_schema.py');
 
 const parseMarkdownWithFrontmatter = (rawContent) => {
   const match = rawContent.match(/^---\r?\n([\s\S]*?)\r?\n---\r?\n?([\s\S]*)$/);
@@ -71,9 +70,7 @@ export const GameDesignerPlugin = async () => {
       const commandFile = path.join(commandsDir, 'analyze.md');
       if (fs.existsSync(commandFile)) {
         const { frontmatter, body } = parseMarkdownWithFrontmatter(fs.readFileSync(commandFile, 'utf8'));
-        const resolvedBody = body
-          .replace(/python3 validate_balance\.py/g, `python3 "${validatorScriptPath}"`)
-          .replace(/`schemas\/game_balance_schema\.py`/g, `\`${schemaFilePath}\``);
+        const resolvedBody = body.replace(/python3 validate_balance\.py/g, `python3 "${validatorScriptPath}"`);
         config.command = config.command || {};
         config.command['analyze'] = {
           description: frontmatter.description || 'Interactive Brainstorm-First game thinking workflow.',

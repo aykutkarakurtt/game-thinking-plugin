@@ -61,8 +61,8 @@ Once the user explicitly approves the chosen concept in Stage 1, execute all pha
 
 ### Phase 5: Deliverable Artifact Generation & Pydantic Schema Validation
 1. Write the strategic Thinking, Market Deconstruction, MDA/Juice, and Keep/Kill report to `README.md` (strictly Thinking Lead scope — do NOT turn it into a bloated production GDD).
-2. Write the standalone, mathematically validated configuration to `game_balance.json` conforming to the Pydantic v2 schema in `schemas/game_balance_schema.py`.
-3. Run `python3 validate_balance.py` to verify that `game_balance.json` passes all Pydantic v2 `BaseModel` type and range constraints and exports `schemas/game_balance.schema.json`.
+2. Write the standalone, mathematically validated configuration to `game_balance.json` conforming to the Pydantic v2 `GameBalanceConfig` schema in `validate_balance.py`.
+3. Run `python3 validate_balance.py` to verify that `game_balance.json` passes all Pydantic v2 `BaseModel` type and range constraints.
 4. Present a concise executive summary in the CLI output.
 
 **Remember:** Do NOT write C# code or generate art assets. Strictly operate within Game Thinking, Market Strategy, Competitor Deconstruction, Game Feel, and Mathematical Balance.

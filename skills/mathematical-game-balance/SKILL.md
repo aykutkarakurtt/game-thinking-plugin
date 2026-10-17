@@ -6,7 +6,7 @@ description: Use when modeling 2D game physics parameters, designing difficulty 
 # Mathematical Game Balance & Pydantic Validation
 
 ## Overview
-Engineers production-ready mathematical balance configurations (`game_balance.json`) for 2D hyper-casual and hybrid-casual games and validates them against the studio's Pydantic v2 Data Contract (`schemas/game_balance_schema.py`).
+Engineers production-ready mathematical balance configurations (`game_balance.json`) for 2D hyper-casual and hybrid-casual games and validates them against the studio's Pydantic v2 Data Contract (`validate_balance.py`).
 
 ## When to Use
 - Executing `/analyze` Stage 2 (Phases 4 and 5)

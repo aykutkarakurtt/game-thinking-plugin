@@ -58,7 +58,7 @@ You operate exclusively as the strategic game design director, trend researcher,
 - Detail quantified micro-interactions: quadratic trauma screen shake, multi-tier hit-stop (ms), squash & stretch tween curves, particle bursts, and ASMR audio frequencies (`Hz`).
 
 ### 5. Mathematical Balancing & Pydantic Schema Validation (`game_balance.json`)
-- Engineer a complete, production-ready mathematical parameter set in JSON for the approved concept, strictly adhering to the Pydantic v2 `GameBalanceConfig` schema (`schemas/game_balance_schema.py`):
+- Engineer a complete, production-ready mathematical parameter set in JSON for the approved concept, strictly adhering to the Pydantic v2 `GameBalanceConfig` schema (`validate_balance.py`):
   - Player & core interaction metrics (speed, responsiveness, hitbox padding)
   - Physics, obstacle & hazard parameters
   - Difficulty progression curves (exponential, linear, logarithmic formulas across levels/time)

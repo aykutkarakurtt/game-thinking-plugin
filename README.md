@@ -102,11 +102,7 @@ game-thinking-plugin/
 │   │   └── SKILL.md                          # 60Hz Fixed Timestep, CCD, Speed Caps & Bounce Deflection
 │   └── mathematical-game-balance/
 │       └── SKILL.md                          # Progression Curves, Scoring Economy & Pydantic Balance Modeling
-├── schemas/
-│   ├── __init__.py                           # Python package exports for studio pipeline
-│   ├── game_balance_schema.py                # Pydantic v2 BaseModel data contract for game_balance.json
-│   └── game_balance.schema.json              # Auto-exported JSON Schema for downstream GDD / Engine agents
-├── validate_balance.py                       # CLI validator verifying game_balance.json via Pydantic v2
+├── validate_balance.py                       # All-in-one Pydantic v2 BaseModel schemas & CLI validator for game_balance.json
 ├── requirements.txt                          # Python dependency (pydantic>=2.0.0)
 ├── AGENTS.md                                 # Core methodological rules & anti-repetition constraints
 ├── opencode.json                             # Local OpenCode configuration
@@ -134,14 +130,14 @@ The plugin packages **9 specialized Game Thinking skills** directly inside `skil
 
 ---
 
-## 🛡 Pydantic v2 Schema Validation (Studio Pipeline Data Contract)
+## 🛡 Pydantic v2 Schema Validation (`validate_balance.py`)
 
-To ensure a 100% type-safe handoff from the **Thinking Stage** to downstream **GDD** and **Engine/Developer** agents, all generated `game_balance.json` files are validated against a strict **Pydantic v2 (`BaseModel`)** schema in `schemas/game_balance_schema.py`:
+To ensure a 100% type-safe handoff from the **Thinking Stage** to downstream **GDD** and **Engine/Developer** agents, all generated `game_balance.json` files are validated against a strict **Pydantic v2 (`BaseModel`)** schema defined in `validate_balance.py`:
 
 * **Validated Models:** `GameBalanceConfig`, `MetaConfig`, `CpiHookSummary`, `CompetitorBenchmark`, `KeepKillVerdict`, `MdaSummary`, `PhysicsSimulationConfig`, `DifficultyProgressionCurves`, `ScreenShakeTraumaConfig`, `HitStopTierConfig`, `AudioDesignAndMixingConfig`, `ScoringAndComboEconomy`.
 * **Mathematical Guardrails:** Enforces physics tick bounds (`30–240 Hz`), normalized trauma increments (`0.0–1.0`), ascending level milestones, negative sidechain ducking gain (`dB`), and real-time hit-stop limits (`0–500 ms`).
 
-### Run Validation & Export JSON Schema
+### Run Validation
 ```bash
 pip install -r requirements.txt
 python3 validate_balance.py

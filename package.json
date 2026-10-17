@@ -9,7 +9,6 @@
     ".opencode/agents",
     ".opencode/commands",
     "skills",
-    "schemas",
     "validate_balance.py",
     "requirements.txt",
     "AGENTS.md",
