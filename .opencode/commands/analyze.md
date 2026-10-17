@@ -52,12 +52,13 @@ Once the user explicitly approves the chosen concept in Stage 1, execute all pha
 - **Juice Blueprint**: Quantified micro-interactions — quadratic trauma screen shake, multi-tier hit-stop (ms), squash & stretch easing curves, particle burst emission counts, and audio frequency layering (`Hz`).
 
 ### Phase 4: Mathematical Game Balance (`mathematical-game-balance`)
-- Engineer a complete, production-ready mathematical parameter set in `game_balance.json` tailored to the approved concept:
-  - Core mechanic & player interaction metrics (+ optional `cpi_hook_summary` and `mda_summary` for downstream GDD handoff)
-  - Physics / hazard / spawn parameters
-  - Difficulty progression formulas (logarithmic, linear, or exponential functions) and level milestones
-  - Quantified Juice & Game Feel matrix (trauma increments, hit-stop ms, tween scales, audio Hz)
-  - Scoring & combo window multipliers
+- Engineer a complete, production-ready mathematical parameter set in `game_balance.json` tailored to the approved concept using the exact root sections required by `GameBalanceConfig` in `validate_balance.py`:
+  - `meta` (`oyun_adi`/`game_title`, `surum`, `tur`/`sub_genre`, `tasarim_lideri`, `denge_modeli`, `tarih`)
+  - `<concept>_mechanics` (Player input, speed, responsiveness, hitbox parameters)
+  - `physics_and_collision_tuning` (`simulation` + concept collision rules)
+  - `difficulty_progression_curves` (`formulas` dict + `level_milestones` list)
+  - `juice_and_game_feel_matrix` (`screen_shake_trauma`, `hit_stop_freeze_frames`, `squash_and_stretch`, `particle_choreography`)
+  - `scoring_and_combo_economy` (`combo_multiplier_step`, `max_combo_multiplier`, etc.)
 
 ### Phase 5: Deliverable Artifact Generation & Pydantic Schema Validation
 1. Write the strategic Thinking, Market Deconstruction, MDA/Juice, and Keep/Kill report to `README.md` (strictly Thinking Lead scope — do NOT turn it into a bloated production GDD).

@@ -123,18 +123,18 @@ class MdaSummary(BaseModel):
 
 
 class PhysicsSimulationConfig(BaseModel):
-    """Engine-neutral 2D physics simulation parameters (`physics-tuning` discipline)."""
+    """Engine-neutral 2D physics simulation parameters."""
 
     model_config = ConfigDict(extra="allow")
 
-    fixed_timestep_sec: float = Field(..., gt=0.0, le=0.05, description="Fixed physics step in seconds (e.g. 0.01666 for 60Hz)")
-    physics_hz: int = Field(..., ge=30, le=240, description="Simulation tick rate in Hz")
-    continuous_collision_detection: bool = Field(..., description="Whether CCD is enabled to prevent fast-body tunneling")
+    fixed_timestep_sec: float = Field(default=0.01666, gt=0.0, le=0.05, description="Fixed physics step in seconds (e.g. 0.01666 for 60Hz)")
+    physics_hz: int = Field(default=60, ge=30, le=240, description="Simulation tick rate in Hz")
+    continuous_collision_detection: bool = Field(default=True, description="Whether CCD is enabled to prevent fast-body tunneling")
     render_interpolation: bool = Field(default=True, description="Whether visual interpolation is enabled between physics ticks")
-    gravity_scale: float = Field(..., ge=-10.0, le=10.0, description="Gravity multiplier")
-    linear_drag: float = Field(..., ge=0.0, le=50.0, description="Linear velocity damping")
-    restitution_bounciness: float = Field(..., ge=0.0, le=2.0, description="Collision elasticity / bounciness coefficient")
-    friction: float = Field(..., ge=0.0, le=5.0, description="Surface friction coefficient")
+    gravity_scale: float = Field(default=0.0, ge=-10.0, le=10.0, description="Gravity multiplier")
+    linear_drag: float = Field(default=0.0, ge=0.0, le=50.0, description="Linear velocity damping")
+    restitution_bounciness: float = Field(default=0.0, ge=0.0, le=2.0, description="Collision elasticity / bounciness coefficient")
+    friction: float = Field(default=0.0, ge=0.0, le=5.0, description="Surface friction coefficient")
 
 
 class PhysicsAndCollisionTuning(BaseModel):
@@ -142,7 +142,7 @@ class PhysicsAndCollisionTuning(BaseModel):
 
     model_config = ConfigDict(extra="allow")
 
-    simulation: PhysicsSimulationConfig
+    simulation: PhysicsSimulationConfig = Field(default_factory=PhysicsSimulationConfig)
 
 
 class LevelMilestone(BaseModel):
@@ -261,13 +261,13 @@ class SidechainDuckingConfig(BaseModel):
 
 
 class AudioDesignAndMixingConfig(BaseModel):
-    """Audio bus hierarchy, loudness normalization, sidechain ducking, and harmonic pitch rules."""
+    """Optional audio bus hierarchy, loudness normalization, and harmonic pitch rules."""
 
     model_config = ConfigDict(extra="allow")
 
-    bus_hierarchy: List[str] = Field(..., min_length=2, description="Ordered audio mixer bus list")
-    master_target_loudness_lufs: float = Field(..., le=0.0, ge=-30.0, description="Target master loudness in LUFS (typically -14.0)")
-    sidechain_ducking: SidechainDuckingConfig
+    bus_hierarchy: List[str] = Field(default_factory=lambda: ["Master", "Music", "SFX", "UI"], min_length=2, description="Ordered audio mixer bus list")
+    master_target_loudness_lufs: float = Field(default=-14.0, le=0.0, ge=-30.0, description="Target master loudness in LUFS (typically -14.0)")
+    sidechain_ducking: Optional[SidechainDuckingConfig] = Field(default=None, description="Optional sidechain ducking settings")
 
 
 class JuiceAndGameFeelMatrix(BaseModel):
@@ -283,11 +283,13 @@ class JuiceAndGameFeelMatrix(BaseModel):
     )
     squash_and_stretch: SquashAndStretchConfig
     particle_choreography: Dict[str, Dict[str, Any]] = Field(
-        ...,
-        min_length=1,
+        default_factory=dict,
         description="Particle burst emission definitions per gameplay event",
     )
-    audio_design_and_mixing: AudioDesignAndMixingConfig
+    audio_design_and_mixing: Optional[AudioDesignAndMixingConfig] = Field(
+        default=None,
+        description="Optional audio mixing and ASMR frequency parameters",
+    )
 
 
 class ScoringAndComboEconomy(BaseModel):
@@ -308,7 +310,7 @@ class GameBalanceConfig(BaseModel):
     `sorting_grid_mechanics`) via structured dictionary validation.
     """
 
-    model_config = ConfigDict(extra="allow")
+    model_config = ConfigDict(extra="allow", populate_by_name=True)
 
     meta: MetaConfig
     cpi_hook_summary: Optional[CpiHookSummary] = Field(
@@ -328,10 +330,22 @@ class GameBalanceConfig(BaseModel):
         default=None,
         description="Structured 2D MDA handoff summary for GDD stage",
     )
-    physics_and_collision_tuning: PhysicsAndCollisionTuning
-    difficulty_progression_curves: DifficultyProgressionCurves
-    juice_and_game_feel_matrix: JuiceAndGameFeelMatrix
-    scoring_and_combo_economy: ScoringAndComboEconomy
+    physics_and_collision_tuning: PhysicsAndCollisionTuning = Field(
+        ...,
+        validation_alias=AliasChoices("physics_and_collision_tuning", "physics_tuning", "physics"),
+    )
+    difficulty_progression_curves: DifficultyProgressionCurves = Field(
+        ...,
+        validation_alias=AliasChoices("difficulty_progression_curves", "difficulty_progression", "progression_curves"),
+    )
+    juice_and_game_feel_matrix: JuiceAndGameFeelMatrix = Field(
+        ...,
+        validation_alias=AliasChoices("juice_and_game_feel_matrix", "juice_matrix", "game_feel_matrix"),
+    )
+    scoring_and_combo_economy: ScoringAndComboEconomy = Field(
+        ...,
+        validation_alias=AliasChoices("scoring_and_combo_economy", "scoring_economy", "scoring"),
+    )
 
     @model_validator(mode="after")
     def validate_concept_mechanics_present(self) -> "GameBalanceConfig":
