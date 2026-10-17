@@ -15,7 +15,7 @@ Strictly follow this two-stage **Thinking Lead** methodology (NO GDD bloat, NO p
 Before generating full analysis documents or touching `README.md` / `game_balance.json`, you MUST first run an interactive brainstorming session with the user:
 
 ### Step 1.1: Invoke Brainstorming & Clarifying Questions
-- Invoke the `brainstorming` and `keep-kill-ideation` skills (plus `prototype-fast` when evaluating keep/kill scope).
+- Invoke the `brainstorming` and `keep-kill-ideation` skills.
 - Inspect existing `README.md` and `game_balance.json` (if present) to ensure you NEVER repeat previously generated sub-genres or mechanics.
 - Ask **one focused question at a time** (prefer multiple-choice options A/B/C/D plus an autonomous option) to clarify:
   1. Target 2D hyper-casual / hybrid-casual sub-genre or core mechanic direction (incorporating `$ARGUMENTS` if provided).
@@ -45,13 +45,13 @@ Once the user explicitly approves the chosen concept in Stage 1, execute all pha
   2. **Friction Points & Churn Risks**: Where does player satisfaction drop?
   3. **Untapped Market Gap**: How our brainstormed concept exploits this gap.
 
-### Phase 3: 2D MDA & Juice Matrix Choreography (`mda-juice-choreography`, `game-feel` & `audio-design`)
+### Phase 3: 2D MDA & Juice Matrix Choreography (`mda-juice-choreography`)
 - **Mechanics**: Input schema, physics rules, fail/win states.
 - **Dynamics**: Tension-release pacing, risk/reward loops, clutch recovery moments.
 - **Aesthetics**: Tactile ASMR satisfaction and visual clarity.
 - **Juice Blueprint**: Quantified micro-interactions — quadratic trauma screen shake, multi-tier hit-stop (ms), squash & stretch easing curves, particle burst emission counts, and audio frequency layering (`Hz`).
 
-### Phase 4: Mathematical Game Balance (`mathematical-game-balance` & `physics-tuning`)
+### Phase 4: Mathematical Game Balance (`mathematical-game-balance`)
 - Engineer a complete, production-ready mathematical parameter set in `game_balance.json` tailored to the approved concept:
   - Core mechanic & player interaction metrics (+ optional `cpi_hook_summary` and `mda_summary` for downstream GDD handoff)
   - Physics / hazard / spawn parameters

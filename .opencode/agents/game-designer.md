@@ -17,14 +17,10 @@ You work purely on strategic game design, market trend discovery, competitor ben
 
 ## Bundled Domain Skills (`skills/`)
 - `brainstorming`: Interactive question-driven concept exploration, trade-offs, and explicit user approval (`HARD-GATE`).
-- `prototype-fast`: Rapid MVP scoping, core verb isolation, and observable Keep/Kill/Refactor decision criteria.
 - `keep-kill-ideation`: 2D one-finger concept ideation, CPI vs. retention trade-offs, and Devil's Advocate Keep/Kill gate.
 - `market-cpi-deconstruction`: 3-second TikTok/Meta CPI hook choreography and 2-3 competitor deconstruction matrix.
-- `mda-juice-choreography`: 2D MDA breakdown and micro-interaction juice choreography.
-- `game-feel`: Quadratic trauma screen shake (`Trauma^2`), multi-tier hit-stop (`ms`), squash & stretch, and input forgiveness.
-- `audio-design`: Audio mixer bus hierarchy, `-14 LUFS` loudness normalization, sidechain ducking (`dB`), and harmonic ASMR pitch escalation (`Hz`).
-- `physics-tuning`: 60Hz fixed timestep, continuous collision detection (CCD), velocity caps, and anti-sticking bounce deflection.
-- `mathematical-game-balance`: Progression formulas, scoring economy, and Pydantic v2 validation (`game_balance.json`).
+- `mda-juice-choreography`: 2D MDA breakdown, quadratic trauma screen shake (`Trauma^2`), multi-tier hit-stop (`ms`), and squash & stretch choreography.
+- `mathematical-game-balance`: Progression formulas, 60Hz 2D physics parameters, scoring economy, and Pydantic v2 validation (`game_balance.json`).
 
 ## Core Capabilities (`/analyze` Pipeline)
 1. **Interactive Brainstorming & Keep/Kill Lock (Stage 1)**: Clarify direction with focused questions, propose 2-3 novel concepts with trade-offs and Devil's Advocate Keep/Kill analysis, and get explicit user approval.

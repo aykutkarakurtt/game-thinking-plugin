@@ -83,25 +83,17 @@ game-thinking-plugin/
 │   │   └── analyze.md                        # /analyze Brainstorm-First custom command
 │   └── plugins/
 │       └── game-designer.js                  # OpenCode plugin entry point (registers agent, command, skills & rules)
-├── skills/                                   # 9 Modular Domain Skills (SKILL.md)
+├── skills/                                   # 5 Core Game Thinking Skills (SKILL.md)
 │   ├── brainstorming/
 │   │   └── SKILL.md                          # Interactive Questioning, Trade-Offs & Approval Gate (HARD-GATE)
-│   ├── prototype-fast/
-│   │   └── SKILL.md                          # Rapid MVP Scoping & Observable Keep/Kill Criteria
 │   ├── keep-kill-ideation/
 │   │   └── SKILL.md                          # Stage 1 Ideation, Trade-Offs & Devil's Advocate Keep/Kill Gate
 │   ├── market-cpi-deconstruction/
 │   │   └── SKILL.md                          # 3-Second CPI Hook Choreography & Competitor Deconstruction
 │   ├── mda-juice-choreography/
 │   │   └── SKILL.md                          # 2D MDA Deconstruction & Micro-Interaction Choreography
-│   ├── game-feel/
-│   │   └── SKILL.md                          # Quadratic Trauma Shake, Hit-Stop Tiers & Squash/Stretch
-│   ├── audio-design/
-│   │   └── SKILL.md                          # Bus Hierarchy, -14 LUFS, Sidechain Ducking & ASMR Pitch Hz
-│   ├── physics-tuning/
-│   │   └── SKILL.md                          # 60Hz Fixed Timestep, CCD, Speed Caps & Bounce Deflection
 │   └── mathematical-game-balance/
-│       └── SKILL.md                          # Progression Curves, Scoring Economy & Pydantic Balance Modeling
+│       └── SKILL.md                          # Progression Curves, 2D Physics & Pydantic Balance Modeling
 ├── validate_balance.py                       # All-in-one Pydantic v2 BaseModel schemas & CLI validator for game_balance.json
 ├── AGENTS.md                                 # Core methodological rules & anti-repetition constraints
 ├── opencode.json                             # Local OpenCode configuration
@@ -113,19 +105,15 @@ game-thinking-plugin/
 
 ## 🧠 Bundled Domain Skills (`skills/`)
 
-The plugin packages **9 specialized Game Thinking skills** directly inside `skills/` that `game-designer` loads on demand during `/analyze`:
+The plugin packages **5 specialized Game Thinking skills** directly inside `skills/` that `game-designer` loads on demand during `/analyze`:
 
-| Skill Name | Purpose & Trigger |
-|---|---|
-| **`brainstorming`** | Interactive one-at-a-time questioning, trade-off framing, and explicit approval gate (`HARD-GATE`). |
-| **`prototype-fast`** | Core verb isolation, MVP scope discipline, and observable Keep / Kill / Refactor signals. |
-| **`keep-kill-ideation`** | One-finger 2D concept ideation, CPI vs. retention trade-off matrix, and Devil's Advocate (`Keep / Kill`) validation gate. |
-| **`market-cpi-deconstruction`** | 3-second TikTok/Meta CPI hook choreography (`0-1s`, `1-2s`, `2-3s`) and 2–3 competitor churn/gap deconstruction. |
-| **`mda-juice-choreography`** | 2D MDA (Mechanics, Dynamics, Aesthetics) deconstruction and micro-interaction juice matrix. |
-| **`game-feel`** | Quadratic trauma screen shake ($\text{Shake} = \text{Trauma}^2$), multi-tier hit-stop (`ms`), squash & stretch, and input forgiveness. |
-| **`audio-design`** | Audio mixer bus hierarchy, `-14 LUFS` loudness target, sidechain ducking (`dB`), and harmonic ASMR pitch escalation (`Hz`). |
-| **`physics-tuning`** | 60Hz fixed timestep, continuous collision detection (CCD), velocity caps, and anti-sticking bounce deflection. |
-| **`mathematical-game-balance`** | Polynomial/logarithmic progression formulas, scoring economy, and Pydantic v2 `game_balance.json` generation. |
+| Skill Name | Studio Stage | Purpose & Trigger |
+|---|---|---|
+| **`brainstorming`** | **Think** | Interactive one-at-a-time questioning, trade-off framing, and explicit approval gate (`HARD-GATE`). |
+| **`keep-kill-ideation`** | **Think** | One-finger 2D concept ideation, CPI vs. retention trade-off matrix, and Devil's Advocate (`Keep / Kill`) validation gate. |
+| **`market-cpi-deconstruction`** | **Find** | 3-second TikTok/Meta CPI hook choreography (`0-1s`, `1-2s`, `2-3s`) and 2–3 competitor churn/gap deconstruction. |
+| **`mda-juice-choreography`** | **Analyze** | 2D MDA (Mechanics, Dynamics, Aesthetics) deconstruction, quadratic trauma screen shake ($\text{Shake} = \text{Trauma}^2$), hit-stop (`ms`), and squash & stretch. |
+| **`mathematical-game-balance`** | **Analyze** | Polynomial/logarithmic progression formulas, 60Hz 2D physics constants, scoring economy, and Pydantic v2 `game_balance.json` generation. |
 
 ---
 
