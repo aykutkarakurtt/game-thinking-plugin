@@ -10,7 +10,6 @@
     ".opencode/commands",
     "skills",
     "validate_balance.py",
-    "requirements.txt",
     "AGENTS.md",
     "opencode.json"
   ],

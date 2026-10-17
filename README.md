@@ -103,7 +103,6 @@ game-thinking-plugin/
 │   └── mathematical-game-balance/
 │       └── SKILL.md                          # Progression Curves, Scoring Economy & Pydantic Balance Modeling
 ├── validate_balance.py                       # All-in-one Pydantic v2 BaseModel schemas & CLI validator for game_balance.json
-├── requirements.txt                          # Python dependency (pydantic>=2.0.0)
 ├── AGENTS.md                                 # Core methodological rules & anti-repetition constraints
 ├── opencode.json                             # Local OpenCode configuration
 ├── package.json                              # Plugin package manifest
@@ -139,7 +138,7 @@ To ensure a 100% type-safe handoff from the **Thinking Stage** to downstream **G
 
 ### Run Validation
 ```bash
-pip install -r requirements.txt
+pip install pydantic
 python3 validate_balance.py
 ```
 
