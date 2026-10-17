@@ -37,15 +37,15 @@ Add the plugin to your studio project's `opencode.json`:
 {
   "$schema": "https://opencode.ai/config.json",
   "plugin": [
-    "github:aykutkarakurtt/game-thinking-plugin"
+    "github:unicostore/staj-ai-aykut_karakurt"
   ]
 }
 ```
 
 ### Option B: Clone & Run Directly
 ```bash
-git clone https://github.com/aykutkarakurtt/game-thinking-plugin.git
-cd game-thinking-plugin
+git clone https://github.com/unicostore/staj-ai-aykut_karakurt.git
+cd staj-ai-aykut_karakurt
 opencode
 ```
 
