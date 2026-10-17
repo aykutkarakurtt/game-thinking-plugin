@@ -70,7 +70,9 @@ export const GameDesignerPlugin = async () => {
       const commandFile = path.join(commandsDir, 'analyze.md');
       if (fs.existsSync(commandFile)) {
         const { frontmatter, body } = parseMarkdownWithFrontmatter(fs.readFileSync(commandFile, 'utf8'));
-        const resolvedBody = body.replace(/python3 validate_balance\.py/g, `python3 "${validatorScriptPath}"`);
+        const resolvedBody = body
+          .replace(/python3 validate_balance\.py/g, `python3 "${validatorScriptPath}"`)
+          .replace(/`validate_balance\.py`/g, `\`${validatorScriptPath}\``);
         config.command = config.command || {};
         config.command['analyze'] = {
           description: frontmatter.description || 'Interactive Brainstorm-First game thinking workflow.',

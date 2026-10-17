@@ -17,15 +17,23 @@ import json
 import sys
 from pathlib import Path
 from typing import Any, Dict, List, Optional
-from pydantic import (
-    AliasChoices,
-    BaseModel,
-    ConfigDict,
-    Field,
-    ValidationError,
-    field_validator,
-    model_validator,
-)
+
+try:
+    from pydantic import (
+        AliasChoices,
+        BaseModel,
+        ConfigDict,
+        Field,
+        ValidationError,
+        field_validator,
+        model_validator,
+    )
+except ModuleNotFoundError:
+    print(
+        "[ERROR] Pydantic v2 is required for schema validation. Install it via: python3 -m pip install pydantic",
+        file=sys.stderr,
+    )
+    sys.exit(1)
 
 
 # ============================================================================
