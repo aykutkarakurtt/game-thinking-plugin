@@ -15,16 +15,8 @@ from schemas.game_balance_schema import GameBalanceConfig
 
 
 def resolve_default_balance_path(root_dir: Path) -> Path:
-    candidates = [
-        Path.cwd() / "outputs" / "game_balance.json",
-        Path.cwd() / "game_balance.json",
-        root_dir / "outputs" / "game_balance.json",
-        root_dir / "game_balance.json",
-    ]
-    for candidate in candidates:
-        if candidate.exists():
-            return candidate
-    return Path.cwd() / "outputs" / "game_balance.json"
+    cwd_balance = Path.cwd() / "game_balance.json"
+    return cwd_balance if cwd_balance.exists() else root_dir / "game_balance.json"
 
 
 def main() -> int:
@@ -46,8 +38,7 @@ def main() -> int:
     if not target_path.exists():
         print("✅ Pydantic v2 Schema Contract Ready (`GameBalanceConfig`)!")
         print(f"   • JSON Schema     : Exported to {export_schema_path.relative_to(root_dir)}")
-        print("   • Target Output   : outputs/game_balance.json (+ outputs/game_thinking_report.md)")
-        print("   • Status          : No balance file generated yet. Run `/analyze` to generate and validate outputs.")
+        print("   • Status          : No `game_balance.json` generated yet. Run `/analyze` to generate and validate a balance file.")
         return 0
 
     try:

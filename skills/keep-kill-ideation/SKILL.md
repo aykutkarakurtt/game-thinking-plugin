@@ -9,13 +9,13 @@ description: Use when brainstorming 2D hyper-casual or hybrid-casual game concep
 Structured ideation discipline that prevents clone concepts and premature documentation by forcing interactive question-driven framing, 2–3 distinct concept proposals, and a brutal Devil's Advocate (`Keep / Kill`) filter before locking a concept.
 
 ## When to Use
-- Starting `/analyze` Stage 1 before generating any `outputs/game_thinking_report.md` or `outputs/game_balance.json` artifacts
+- Starting `/analyze` Stage 1 before generating any `README.md` or `game_balance.json` artifacts
 - Evaluating whether a 2D one-finger mechanic has sufficient 3-second visual clarity and D1/D7 retention depth
 - Filtering out high-CPI or over-scoped mechanics early
 
 ## Core Recipe (Stage 1 Gate)
 
-1. **Anti-Repetition Check:** Inspect existing `outputs/game_thinking_report.md` and `outputs/game_balance.json` (if present). Never reuse a previously generated sub-genre or core mechanic.
+1. **Anti-Repetition Check:** Inspect existing `README.md` and `game_balance.json` (if present). Never reuse a previously generated sub-genre or core mechanic.
 2. **Focused Clarifying Question:** Ask one A/B/C/D multiple-choice question at a time to lock:
    - Target 2D sub-genre (e.g., Sorting/Puzzle, Timing/Physics, Runner/Multiplier, Stacking, Drawing, Slicing)
    - Primary player sensation & 3-second visual CPI hook

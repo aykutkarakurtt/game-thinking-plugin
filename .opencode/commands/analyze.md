@@ -1,5 +1,5 @@
 ---
-description: Interactive Brainstorm-First game thinking workflow — clarify direction via questions, evaluate concepts with Keep/Kill trade-offs, then generate market intelligence, competitor deconstruction, MDA/Juice matrix, outputs/game_thinking_report.md, and outputs/game_balance.json.
+description: Interactive Brainstorm-First game thinking workflow — clarify direction via questions, evaluate concepts with Keep/Kill trade-offs, then generate market intelligence, competitor deconstruction, MDA/Juice matrix, README.md, and game_balance.json.
 agent: game-designer
 ---
 
@@ -12,11 +12,11 @@ Strictly follow this two-stage **Thinking Lead** methodology (NO GDD bloat, NO p
 ---
 
 ## STAGE 1: Interactive Brainstorming & Concept Lock (`HARD-GATE`)
-Before generating full analysis documents or writing to `outputs/game_thinking_report.md` or `outputs/game_balance.json`, you MUST first run an interactive brainstorming session with the user:
+Before generating full analysis documents or touching `README.md` / `game_balance.json`, you MUST first run an interactive brainstorming session with the user:
 
 ### Step 1.1: Invoke Brainstorming & Clarifying Questions
 - Invoke the `brainstorming` and `keep-kill-ideation` skills (plus `prototype-fast` when evaluating keep/kill scope).
-- Inspect existing `outputs/game_thinking_report.md` and `outputs/game_balance.json` (if present) to ensure you NEVER repeat previously generated sub-genres or mechanics.
+- Inspect existing `README.md` and `game_balance.json` (if present) to ensure you NEVER repeat previously generated sub-genres or mechanics.
 - Ask **one focused question at a time** (prefer multiple-choice options A/B/C/D plus an autonomous option) to clarify:
   1. Target 2D hyper-casual / hybrid-casual sub-genre or core mechanic direction (incorporating `$ARGUMENTS` if provided).
   2. Primary player sensation / 3-second visual CPI hook preference.
@@ -52,7 +52,7 @@ Once the user explicitly approves the chosen concept in Stage 1, execute all pha
 - **Juice Blueprint**: Quantified micro-interactions — quadratic trauma screen shake, multi-tier hit-stop (ms), squash & stretch easing curves, particle burst emission counts, and audio frequency layering (`Hz`).
 
 ### Phase 4: Mathematical Game Balance (`mathematical-game-balance` & `physics-tuning`)
-- Engineer a complete, production-ready mathematical parameter set in `outputs/game_balance.json` tailored to the approved concept:
+- Engineer a complete, production-ready mathematical parameter set in `game_balance.json` tailored to the approved concept:
   - Core mechanic & player interaction metrics (+ optional `cpi_hook_summary` and `mda_summary` for downstream GDD handoff)
   - Physics / hazard / spawn parameters
   - Difficulty progression formulas (logarithmic, linear, or exponential functions) and level milestones
@@ -60,9 +60,9 @@ Once the user explicitly approves the chosen concept in Stage 1, execute all pha
   - Scoring & combo window multipliers
 
 ### Phase 5: Deliverable Artifact Generation & Pydantic Schema Validation
-1. Write the strategic Thinking, Market Deconstruction, MDA/Juice, and Keep/Kill report to `outputs/game_thinking_report.md` (strictly Thinking Lead scope — do NOT overwrite the root `README.md` and do NOT turn it into a bloated production GDD).
-2. Write the standalone, mathematically validated configuration to `outputs/game_balance.json` conforming to the Pydantic v2 schema in `schemas/game_balance_schema.py`.
-3. Run `python3 validate_balance.py` to verify that `outputs/game_balance.json` passes all Pydantic v2 `BaseModel` type and range constraints and exports `schemas/game_balance.schema.json`.
+1. Write the strategic Thinking, Market Deconstruction, MDA/Juice, and Keep/Kill report to `README.md` (strictly Thinking Lead scope — do NOT turn it into a bloated production GDD).
+2. Write the standalone, mathematically validated configuration to `game_balance.json` conforming to the Pydantic v2 schema in `schemas/game_balance_schema.py`.
+3. Run `python3 validate_balance.py` to verify that `game_balance.json` passes all Pydantic v2 `BaseModel` type and range constraints and exports `schemas/game_balance.schema.json`.
 4. Present a concise executive summary in the CLI output.
 
 **Remember:** Do NOT write C# code or generate art assets. Strictly operate within Game Thinking, Market Strategy, Competitor Deconstruction, Game Feel, and Mathematical Balance.

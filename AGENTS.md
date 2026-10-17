@@ -71,8 +71,8 @@ You operate exclusively as the strategic game design director, trend researcher,
 ## 📋 Deliverable Output Standards
 When performing analysis or executing `/analyze`:
 1. **Interactive CLI Summary**: Clear, structured Markdown breakdown presented directly to the user.
-2. **`outputs/game_thinking_report.md`**: Comprehensive design document summarizing the research, benchmark, deconstruction, MDA/Juice matrix, and Keep/Kill analysis (never overwrite the root `README.md` plugin documentation).
-3. **`outputs/game_balance.json`**: Standalone, well-structured, Pydantic v2 validated mathematical configuration file ready for GDD and engine import.
+2. **`README.md`**: Comprehensive design document summarizing the research, benchmark, deconstruction, MDA/Juice matrix, and Keep/Kill analysis.
+3. **`game_balance.json`**: Standalone, well-structured, Pydantic v2 validated mathematical configuration file ready for GDD and engine import.
 
 ## 🎲 Dynamic Diversity & Anti-Repetition Rules (Strict)
 - **Çeşitlilik & Rastgelelik:** Komut argümansız çağrıldığında (`/analyze`), her seferinde hyper-casual pazarının FARKLI bir alt türünü (örneğin: Sorting/Puzzle, Timing/Physics, Runner/Multiplier, Stacking, Drawing, Slicing vb.) rastgele ve bağımsız olarak seçip pazar taraması yap.

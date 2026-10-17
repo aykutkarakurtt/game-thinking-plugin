@@ -6,11 +6,11 @@ description: Use before any creative game thinking, concept generation, market a
 # Brainstorming Ideas Into Game Designs
 
 ## Overview
-Turns raw prompts or open-ended requests into validated 2D game concepts through structured collaborative dialogue before any final artifacts (`outputs/game_thinking_report.md`, `outputs/game_balance.json`) are generated.
+Turns raw prompts or open-ended requests into validated 2D game concepts through structured collaborative dialogue before any final artifacts (`README.md`, `game_balance.json`) are generated.
 
 ## Core Process (`HARD-GATE`)
 
-1. **Explore Context & Anti-Repetition:** Inspect existing project outputs (`outputs/game_thinking_report.md`, `outputs/game_balance.json`) so previously generated sub-genres or mechanics are never repeated.
+1. **Explore Context & Anti-Repetition:** Inspect existing project state (`README.md`, `game_balance.json`) so previously generated sub-genres or mechanics are never repeated.
 2. **Ask One Focused Question at a Time:**
    - Prefer A/B/C/D multiple-choice options plus an autonomous option.
    - Clarify target 2D sub-genre, core one-finger input feel, and 3-second visual CPI hook preference.
